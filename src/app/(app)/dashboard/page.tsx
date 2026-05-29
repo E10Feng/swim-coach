@@ -74,110 +74,212 @@ export default async function DashboardPage() {
   const ringDashoffset = RING_CIRCUMFERENCE * (1 - weeklyProgressPercent / 100)
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-4 py-8 max-w-2xl mx-auto">
-      <header className="mb-8">
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <p className="text-gray-400 text-sm mt-1">
+    <div className="min-h-screen bg-bg px-4 py-6 max-w-2xl mx-auto">
+
+      {/* Header */}
+      <header className="mb-5">
+        <p className="text-text-secondary text-sm">
           {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
         </p>
+        <h1 className="text-2xl font-bold text-text-primary mt-0.5">
+          Ready to swim? 🏊
+        </h1>
       </header>
 
-      <section className="bg-blue-950 border border-blue-800 rounded-xl p-5 mb-6" aria-label="Coach message">
-        <p className="text-sm text-blue-300 font-semibold mb-1">Coach Alex</p>
-        <p className="text-white">{coachMessage}</p>
-      </section>
+      {/* Coach speech bubble */}
+      <div className="mb-5 flex gap-3 items-start">
+        <div
+          className="flex-shrink-0 h-11 w-11 rounded-full flex items-center justify-center text-xl border-2"
+          style={{ background: 'var(--surface)', borderColor: 'var(--coral)' }}
+        >
+          🏊
+        </div>
+        <div className="relative flex-1">
+          {/* Triangle pointer */}
+          <div
+            className="absolute -left-2.5 top-4 w-3 h-3 rotate-45"
+            style={{
+              background: 'rgba(255,107,107,0.1)',
+              borderLeft: '1px solid rgba(255,107,107,0.25)',
+              borderBottom: '1px solid rgba(255,107,107,0.25)',
+            }}
+          />
+          <div
+            className="rounded-2xl px-4 py-3"
+            style={{
+              background: 'rgba(255,107,107,0.08)',
+              border: '1px solid rgba(255,107,107,0.25)',
+            }}
+          >
+            <p className="text-xs font-bold mb-1" style={{ color: 'var(--coral)' }}>
+              Coach Alex
+            </p>
+            <p className="text-sm text-text-primary leading-relaxed">{coachMessage}</p>
+          </div>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col items-center" aria-label="Current streak">
-          <span className="text-4xl font-extrabold text-orange-400">{currentStreak}</span>
-          <span className="text-sm text-gray-400 mt-1">Week streak</span>
-          {longestStreak > 0 && <span className="text-xs text-gray-600 mt-2">Best: {longestStreak}</span>}
+      {/* Streak + Weekly goal */}
+      <div className="grid grid-cols-2 gap-3 mb-5">
+        {/* Streak */}
+        <div
+          className="btn-game btn-game-surface rounded-2xl p-4 text-center"
+          style={{ boxShadow: '0 5px 0 var(--amber-dark)' }}
+        >
+          <div className="text-3xl mb-1">🔥</div>
+          <div
+            className="text-6xl font-bold leading-none"
+            style={{ fontFamily: 'var(--font-display)', color: 'var(--amber)' }}
+          >
+            {currentStreak}
+          </div>
+          <p className="text-xs text-text-secondary mt-1">week streak</p>
+          {longestStreak > 0 && (
+            <p className="text-xs mt-1.5 font-medium" style={{ color: 'var(--amber)' }}>
+              Best: {longestStreak}
+            </p>
+          )}
         </div>
 
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col items-center" aria-label="Weekly goal">
-          <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true">
-            <circle cx="48" cy="48" r={RING_RADIUS} fill="none" stroke="#374151" strokeWidth="8" />
+        {/* Weekly goal ring */}
+        <div
+          className="btn-game btn-game-surface rounded-2xl p-4 text-center"
+          style={{ boxShadow: `0 5px 0 ${weeklyGoalMet ? 'var(--green-dark)' : 'var(--amber-dark)'}` }}
+        >
+          <svg width="88" height="88" viewBox="0 0 96 96" className="mx-auto" aria-label="Weekly goal">
+            <circle cx="48" cy="48" r={RING_RADIUS} fill="none" stroke="#132840" strokeWidth="10" />
             <circle
               cx="48" cy="48" r={RING_RADIUS} fill="none"
-              stroke={weeklyGoalMet ? '#22c55e' : '#3b82f6'}
-              strokeWidth="8" strokeLinecap="round"
+              stroke={weeklyGoalMet ? 'var(--green)' : 'var(--amber)'}
+              strokeWidth="10" strokeLinecap="round"
               strokeDasharray={RING_CIRCUMFERENCE}
               strokeDashoffset={ringDashoffset}
               transform="rotate(-90 48 48)"
             />
-            <text x="48" y="48" textAnchor="middle" dominantBaseline="central" fill="white" fontSize="14" fontWeight="bold">
+            <text x="48" y="52" textAnchor="middle" fill="white" fontSize="15" fontWeight="bold">
               {sessionsThisWeek}/{daysPerWeek}
             </text>
           </svg>
-          <span className="text-sm text-gray-400 mt-1">This week</span>
+          <p className="text-xs text-text-secondary mt-1">this week</p>
         </div>
       </div>
 
-      <section className="bg-gray-900 border border-gray-800 rounded-xl p-5 mb-6" aria-label="XP and level">
-        <div className="flex justify-between items-center mb-2">
-          <span className="font-semibold text-white">{levelName}</span>
-          {nextLevel
-            ? <span className="text-sm text-gray-400">{xpToNextLevel} XP to {nextLevel.name}</span>
-            : <span className="text-sm text-yellow-400">Max Level</span>
-          }
+      {/* XP card */}
+      <div
+        className="btn-game btn-game-surface rounded-2xl p-4 mb-5"
+        style={{ boxShadow: '0 5px 0 var(--green-dark)' }}
+      >
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <p className="text-xs text-text-secondary mb-0.5">Level</p>
+            <p className="text-base font-bold text-text-primary">{levelName}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs text-text-secondary mb-0.5">Total XP</p>
+            <p
+              className="text-base font-bold"
+              style={{ fontFamily: 'var(--font-mono)', color: 'var(--amber)' }}
+            >
+              {totalXp.toLocaleString()}
+            </p>
+          </div>
         </div>
-        <div className="w-full bg-gray-800 rounded-full h-3" role="progressbar" aria-valuenow={xpProgressPercent} aria-valuemin={0} aria-valuemax={100}>
+        <div className="w-full rounded-full h-4 overflow-hidden" style={{ background: 'var(--bg)' }}>
           <div
-            className="bg-gradient-to-r from-blue-500 to-cyan-400 h-3 rounded-full transition-all duration-500"
-            style={{ width: `${xpProgressPercent}%` }}
+            className="h-4 rounded-full transition-all duration-700"
+            style={{
+              width: `${xpProgressPercent}%`,
+              background: 'var(--green)',
+              boxShadow: '0 0 10px rgba(88,204,2,0.4)',
+            }}
           />
         </div>
-        <p className="text-xs text-gray-500 mt-2">{totalXp.toLocaleString()} total XP</p>
-      </section>
+        {nextLevel ? (
+          <p className="text-xs text-right mt-2" style={{ color: 'var(--text-muted)' }}>
+            {xpToNextLevel} XP to {nextLevel.name}
+          </p>
+        ) : (
+          <p className="text-xs text-right mt-2" style={{ color: 'var(--amber)' }}>
+            🏆 Max Level!
+          </p>
+        )}
+      </div>
 
+      {/* Primary CTA */}
       <Link
         href="/generate"
-        className="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-4 rounded-xl mb-6 transition-colors"
+        className="btn-game btn-game-green block w-full text-center rounded-2xl py-5 mb-5 text-xl font-extrabold"
       >
-        Get Today&apos;s Set →
+        Get Today&apos;s Set ⚡
       </Link>
 
+      {/* Recent activity */}
       {recentWorkouts.length > 0 && (
-        <section aria-label="Recent activity">
-          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Recent Activity</h2>
-          <ul className="space-y-3">
+        <section className="mb-5">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-text-secondary mb-3">
+            Recent Activity
+          </h2>
+          <div className="space-y-2">
             {recentWorkouts.map(workout => {
               const set = recentSets.find(s => s.id === workout.generated_set_id)
+              const energyEmoji: Record<string, string> = {
+                aerobic: '💨', threshold: '⚡', anaerobic: '🔥', speed: '🚀',
+              }
+              const emoji = energyEmoji[set?.energy_system ?? ''] ?? '🏊'
               return (
-                <li key={workout.id} className="bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-white capitalize">
-                      {set?.energy_system ?? 'Workout'}
-                      {set?.session_input?.focus_stroke ? ` · ${set.session_input.focus_stroke}` : ''}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      {new Date(workout.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                      {workout.duration_min ? ` · ${workout.duration_min} min` : ''}
-                    </p>
+                <div
+                  key={workout.id}
+                  className="rounded-xl px-4 py-3 flex items-center justify-between"
+                  style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{emoji}</span>
+                    <div>
+                      <p className="text-sm font-medium text-text-primary capitalize">
+                        {set?.energy_system ?? 'Workout'}
+                      </p>
+                      <p className="text-xs text-text-secondary">
+                        {new Date(workout.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        {workout.duration_min ? ` · ${workout.duration_min} min` : ''}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-cyan-400">+{workout.xp_earned} XP</span>
-                    {workout.rating === 'thumbs_up' && <span aria-label="Thumbs up" className="text-base">👍</span>}
-                    {workout.rating === 'thumbs_down' && <span aria-label="Thumbs down" className="text-base">👎</span>}
+                    <span
+                      className="text-xs font-bold px-2 py-1 rounded-full"
+                      style={{ background: 'rgba(255,184,0,0.12)', color: 'var(--amber)' }}
+                    >
+                      +{workout.xp_earned} XP
+                    </span>
+                    {workout.rating === 'thumbs_up' && <span>👍</span>}
+                    {workout.rating === 'thumbs_down' && <span>👎</span>}
                   </div>
-                </li>
+                </div>
               )
             })}
-          </ul>
+          </div>
         </section>
       )}
 
+      {/* Badges */}
       {earnedBadges.length > 0 && (
-        <section aria-label="Earned badges" className="mt-6">
-          <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Badges</h2>
+        <section>
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-text-secondary mb-3">
+            Badges
+          </h2>
           <div className="flex flex-wrap gap-2">
             {earnedBadges.map(badge => (
               <span
                 key={badge.id}
                 title={badge.description}
-                className="bg-yellow-900/40 border border-yellow-700 text-yellow-300 text-xs font-medium px-3 py-1 rounded-full"
+                className="rounded-full px-3 py-1 text-xs font-semibold"
+                style={{
+                  background: 'rgba(255,184,0,0.12)',
+                  color: 'var(--amber)',
+                  border: '1px solid rgba(255,184,0,0.25)',
+                }}
               >
-                {badge.name}
+                🏅 {badge.name}
               </span>
             ))}
           </div>
