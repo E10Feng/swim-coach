@@ -15,13 +15,33 @@ export default async function AppLayout({
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <nav className="border-b border-gray-100 bg-white px-4 py-3 flex gap-5 text-sm text-gray-700">
-        <Link href="/dashboard" className="hover:text-black">Dashboard</Link>
-        <Link href="/generate" className="hover:text-black">Generate</Link>
-        <Link href="/history" className="hover:text-black">History</Link>
-        <Link href="/insights" className="hover:text-black">Insights</Link>
-        <Link href="/profile" className="hover:text-black">Profile</Link>
+    <div className="min-h-screen flex flex-col bg-bg">
+      <nav
+        className="border-b px-4 py-3 flex items-center gap-6 text-sm"
+        style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
+      >
+        <Link
+          href="/dashboard"
+          className="text-base font-bold tracking-tight mr-4 text-accent"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          SWIM COACH
+        </Link>
+        {[
+          { href: '/dashboard', label: 'Dashboard' },
+          { href: '/generate', label: 'Generate' },
+          { href: '/history', label: 'History' },
+          { href: '/insights', label: 'Insights' },
+          { href: '/profile', label: 'Profile' },
+        ].map(link => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="text-text-secondary hover:text-text-primary transition-colors"
+          >
+            {link.label}
+          </Link>
+        ))}
       </nav>
       <main className="flex-1">{children}</main>
     </div>
