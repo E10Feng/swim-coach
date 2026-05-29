@@ -22,48 +22,80 @@ export default async function ProfilePage({
   const justUpgraded = params.upgraded === '1'
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-8 space-y-6">
-      <h1 className="text-2xl font-bold">Profile</h1>
+    <div className="max-w-lg mx-auto px-4 py-8 space-y-4">
+      <h1
+        className="text-2xl font-bold text-text-primary"
+        style={{ fontFamily: 'var(--font-display)' }}
+      >
+        Profile
+      </h1>
 
       {justUpgraded && (
-        <div className="rounded-xl bg-green-50 border border-green-200 px-4 py-3 text-green-800 text-sm">
-          You are now on the Pro plan. Welcome aboard!
+        <div
+          className="rounded-2xl border px-4 py-3 text-sm font-medium"
+          style={{ borderColor: 'var(--green)', color: 'var(--green)', background: 'rgba(88,204,2,0.08)' }}
+        >
+          🎉 You&apos;re now on the Pro plan. Welcome aboard!
         </div>
       )}
 
-      <div className="rounded-xl border border-gray-100 bg-white px-5 py-4 space-y-2">
-        <p className="text-sm text-gray-500">Email</p>
-        <p className="text-sm font-medium text-gray-900">{user.email}</p>
+      {/* Email */}
+      <div
+        className="rounded-2xl p-4"
+        style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+      >
+        <p className="text-xs font-semibold uppercase tracking-widest text-text-secondary mb-1">Email</p>
+        <p className="text-sm font-medium text-text-primary">{user.email}</p>
       </div>
 
-      <div className="rounded-xl border border-gray-100 bg-white px-5 py-4 space-y-4">
+      {/* Subscription */}
+      <div
+        className="rounded-2xl p-5 space-y-4"
+        style={{
+          background: 'var(--surface)',
+          border: `2px solid ${isPaid ? 'var(--amber)' : 'var(--border)'}`,
+        }}
+      >
         <div className="flex items-center gap-3">
-          <p className="text-sm text-gray-500">Current plan</p>
-          <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${isPaid ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'}`}>
-            {isPaid ? 'Pro' : 'Free'}
+          <p className="text-sm text-text-secondary">Current plan</p>
+          <span
+            className="rounded-full px-3 py-1 text-xs font-bold"
+            style={{
+              background: isPaid ? 'rgba(255,184,0,0.15)' : 'rgba(107,138,173,0.15)',
+              color: isPaid ? 'var(--amber)' : 'var(--text-secondary)',
+            }}
+          >
+            {isPaid ? '⭐ Pro' : 'Free'}
           </span>
         </div>
 
         {!isPaid && (
-          <div className="space-y-2">
-            <p className="text-sm text-gray-600">
-              Free tier: 3 AI sets per week. Upgrade for unlimited sets, full insights, and complete history.
+          <div className="space-y-3">
+            <p className="text-sm text-text-secondary leading-relaxed">
+              Free tier: 3 AI sets per week. Upgrade for unlimited sets, full insights, and complete training history.
             </p>
             <form action="/api/stripe/checkout" method="POST">
-              <button type="submit" className="rounded-full bg-blue-600 px-5 py-2 text-sm font-medium text-white hover:bg-blue-700">
-                Upgrade to Pro — $12/mo
+              <button
+                type="submit"
+                className="btn-game btn-game-amber w-full rounded-2xl py-3.5 text-base font-bold"
+              >
+                ⭐ Upgrade to Pro — $12/mo
               </button>
             </form>
           </div>
         )}
 
         {isPaid && (
-          <div className="space-y-2">
-            <p className="text-sm text-gray-600">
-              Pro plan active. You have unlimited sets, full insights, and complete history.
+          <div className="space-y-3">
+            <p className="text-sm text-text-secondary leading-relaxed">
+              Pro plan active. Unlimited sets, full insights, complete training history. 🏆
             </p>
             <form action={async () => { 'use server'; await cancelSubscription() }}>
-              <button type="submit" className="rounded-full border border-red-200 bg-red-50 px-5 py-2 text-sm font-medium text-red-600 hover:bg-red-100">
+              <button
+                type="submit"
+                className="w-full rounded-2xl py-3 text-sm font-semibold transition-all hover:opacity-80"
+                style={{ border: '1px solid var(--coral)', color: 'var(--coral)', background: 'rgba(255,107,107,0.06)' }}
+              >
                 Cancel subscription
               </button>
             </form>
@@ -71,8 +103,13 @@ export default async function ProfilePage({
         )}
       </div>
 
+      {/* Sign out */}
       <form action="/auth/signout" method="POST">
-        <button type="submit" className="text-sm text-gray-500 hover:text-gray-700 underline">
+        <button
+          type="submit"
+          className="text-sm underline"
+          style={{ color: 'var(--text-muted)' }}
+        >
           Sign out
         </button>
       </form>
