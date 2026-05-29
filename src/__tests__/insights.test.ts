@@ -109,3 +109,38 @@ describe('consistencyScore', () => {
     expect(consistencyScore(workouts, ANCHOR)).toBe(25)
   })
 })
+
+// ─── getInsightsNote ─────────────────────────────────────────────────────────
+
+import { getInsightsNote } from '../lib/insights/coaching-notes'
+
+describe('getInsightsNote', () => {
+  const base: WeeklyStats = {
+    sessionCount: 4, totalVolume: 180,
+    aerobicPct: 50, thresholdPct: 25, anaerobicPct: 15, speedPct: 10, techniquePct: 50,
+  }
+
+  it('returns no-sessions message when sessionCount is 0', () => {
+    expect(getInsightsNote({ ...base, sessionCount: 0 })).toContain('No sessions')
+  })
+
+  it('flags low aerobic base', () => {
+    expect(getInsightsNote({ ...base, aerobicPct: 20 })).toContain('aerobic')
+  })
+
+  it('flags excessive speed work', () => {
+    expect(getInsightsNote({ ...base, speedPct: 50, aerobicPct: 50 })).toContain('speed work')
+  })
+
+  it('flags low technique work', () => {
+    expect(getInsightsNote({ ...base, techniquePct: 10 })).toContain('technique')
+  })
+
+  it('flags heavy threshold loading', () => {
+    expect(getInsightsNote({ ...base, thresholdPct: 60, aerobicPct: 50, speedPct: 5 })).toContain('threshold')
+  })
+
+  it('returns positive message when balance is good', () => {
+    expect(getInsightsNote(base)).toContain('balance')
+  })
+})
