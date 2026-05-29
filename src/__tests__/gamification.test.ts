@@ -71,3 +71,66 @@ describe('LEVELS export', () => {
     }
   })
 })
+
+import { updateStreak } from '@/lib/gamification/streaks'
+import type { UserProgress } from '@/lib/types/database'
+
+function makeProgress(overrides: Partial<UserProgress> = {}): UserProgress {
+  return {
+    user_id: 'user-1',
+    current_streak: 0,
+    longest_streak: 0,
+    total_xp: 0,
+    level: 'Lap Swimmer',
+    last_completed_at: null,
+    sets_generated_this_week: 0,
+    week_start: '2026-05-25',
+    ...overrides,
+  }
+}
+
+describe('updateStreak', () => {
+  const daysPerWeek = 3
+
+  it('increments streak when weekly goal is first met (3rd completion)', () => {
+    const progress = makeProgress({ sets_generated_this_week: 2, week_start: '2026-05-25' })
+    const completedAt = new Date('2026-05-27T10:00:00Z')
+    const result = updateStreak(progress, completedAt, daysPerWeek)
+    expect(result.sets_generated_this_week).toBe(3)
+    expect(result.current_streak).toBe(1)
+  })
+
+  it('does not increment streak again if goal already met this week', () => {
+    const progress = makeProgress({ current_streak: 2, sets_generated_this_week: 4, week_start: '2026-05-25' })
+    const completedAt = new Date('2026-05-29T10:00:00Z')
+    const result = updateStreak(progress, completedAt, daysPerWeek)
+    expect(result.current_streak).toBe(2)
+    expect(result.sets_generated_this_week).toBe(5)
+  })
+
+  it('resets week counter when a new week starts', () => {
+    const progress = makeProgress({ current_streak: 2, longest_streak: 2, sets_generated_this_week: 0, week_start: '2026-05-18' })
+    const completedAt = new Date('2026-05-26T10:00:00Z')
+    const result = updateStreak(progress, completedAt, daysPerWeek)
+    expect(result.week_start).toBe('2026-05-25')
+    expect(result.sets_generated_this_week).toBe(1)
+    expect(result.current_streak).toBe(2)
+  })
+
+  it('resets streak to 0 when a week is skipped', () => {
+    const progress = makeProgress({ current_streak: 5, longest_streak: 5, sets_generated_this_week: 0, week_start: '2026-05-11' })
+    const completedAt = new Date('2026-05-26T10:00:00Z')
+    const result = updateStreak(progress, completedAt, daysPerWeek)
+    expect(result.current_streak).toBe(0)
+    expect(result.week_start).toBe('2026-05-25')
+    expect(result.sets_generated_this_week).toBe(1)
+  })
+
+  it('updates longest_streak when current exceeds it', () => {
+    const progress = makeProgress({ current_streak: 3, longest_streak: 3, sets_generated_this_week: 2, week_start: '2026-05-25' })
+    const completedAt = new Date('2026-05-28T10:00:00Z')
+    const result = updateStreak(progress, completedAt, daysPerWeek)
+    expect(result.current_streak).toBe(4)
+    expect(result.longest_streak).toBe(4)
+  })
+})
