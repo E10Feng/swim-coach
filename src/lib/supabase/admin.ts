@@ -17,3 +17,6 @@ export function createAdminClient() {
     },
   })
 }
+
+// Singleton for use in Route Handlers and server actions where a factory call is unnecessary
+export const supabaseAdmin = createAdminClient()
