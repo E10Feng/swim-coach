@@ -112,7 +112,7 @@ export async function generateSetAction(formData: FormData) {
   const sessionInput: SessionInput = {
     duration_min:
       parseInt(formData.get('duration_min') as string, 10) || profile.session_duration_min,
-    focus_stroke: (formData.get('focus_stroke') as string) || undefined,
+    focus_stroke: (formData.get('focus_stroke') as import('@/lib/types/database').Stroke) || undefined,
     energy_system: (formData.get('energy_system') as EnergySystem) || undefined,
     technique_focus: (formData.get('technique_focus') as string) || undefined,
     energy_level:
