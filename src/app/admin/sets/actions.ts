@@ -1,9 +1,16 @@
 'use server'
 
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath } from 'next/cache'
 
 export async function toggleSetActive(formData: FormData): Promise<void> {
+  const cookieStore = await cookies()
+  if (cookieStore.get('admin_session')?.value !== 'authenticated') {
+    redirect('/admin/login')
+  }
+
   const id = formData.get('id')
   const isActive = formData.get('is_active') === 'true'
 

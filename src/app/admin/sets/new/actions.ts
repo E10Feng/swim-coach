@@ -4,6 +4,10 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect } from 'next/navigation'
 import type { Stroke, EnergySystem, SetPoolFormat } from '@/lib/types/database'
 
+const VALID_STROKES = ['freestyle', 'backstroke', 'breaststroke', 'butterfly', 'IM', 'mixed']
+const VALID_ENERGY_SYSTEMS = ['aerobic', 'threshold', 'anaerobic', 'speed']
+const VALID_POOL_FORMATS = ['yards', 'meters', 'both']
+
 export async function createSet(
   _prevState: string | null,
   formData: FormData
@@ -20,9 +24,9 @@ export async function createSet(
   const coach_notes = formData.get('coach_notes')
   const is_active = formData.get('is_active') === 'true'
 
-  if (!stroke) return 'stroke is required'
-  if (!energy_system) return 'energy_system is required'
-  if (!pool_format) return 'pool_format is required'
+  if (!stroke || !VALID_STROKES.includes(stroke)) return 'Invalid stroke value'
+  if (!energy_system || !VALID_ENERGY_SYSTEMS.includes(energy_system)) return 'Invalid energy_system value'
+  if (!pool_format || !VALID_POOL_FORMATS.includes(pool_format)) return 'Invalid pool_format value'
   if (!set_text || typeof set_text !== 'string' || !set_text.trim()) return 'set_text is required'
   if (!difficulty || difficulty < 1 || difficulty > 5) return 'difficulty must be between 1 and 5'
   if (!estimated_duration_min || estimated_duration_min < 1) return 'estimated_duration_min must be a positive number'
