@@ -1,0 +1,8 @@
+export default function OnboardingPage() {
+  return (
+    <div>
+      <h1>Onboarding</h1>
+      <p>Coming in Plan 4.</p>
+    </div>
+  )
+}
