@@ -16,8 +16,8 @@ jest.mock('@/lib/supabase/client', () => ({
 describe('LoginPage', () => {
   it('renders email and password inputs', () => {
     render(<LoginPage />)
-    expect(screen.getByPlaceholderText('Email')).toBeInTheDocument()
-    expect(screen.getByPlaceholderText('Password')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('••••••••')).toBeInTheDocument()
   })
 
   it('renders sign in button', () => {
