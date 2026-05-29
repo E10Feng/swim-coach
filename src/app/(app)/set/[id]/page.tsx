@@ -32,38 +32,72 @@ export default async function SetPage({ params }: SetPageProps) {
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8">
-      <section className="mb-6 rounded-lg bg-blue-50 border border-blue-100 p-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-blue-500 mb-1">
+      <section
+        className="mb-6 rounded-xl border p-5"
+        style={{ background: 'rgba(0,229,255,0.05)', borderColor: 'var(--accent)' }}
+      >
+        <p
+          className="text-xs font-semibold uppercase tracking-widest mb-2"
+          style={{ color: 'var(--accent)' }}
+        >
           {COACH_NAME} says
         </p>
-        <p className="text-sm text-blue-900">{genSet.coach_commentary}</p>
+        <p className="text-sm text-text-primary leading-relaxed">{genSet.coach_commentary}</p>
       </section>
 
       <section className="mb-8">
-        <h1 className="text-xl font-bold mb-3">Today&apos;s Set</h1>
-        <pre className="whitespace-pre-wrap rounded-lg bg-gray-50 border border-gray-200 p-4 text-sm font-mono leading-relaxed">
+        <h1
+          className="text-xl font-bold mb-4 text-text-primary"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          TODAY&apos;S SET
+        </h1>
+        <pre
+          className="whitespace-pre-wrap rounded-xl border p-5 text-sm leading-relaxed"
+          style={{
+            fontFamily: 'var(--font-mono)',
+            background: 'var(--surface)',
+            borderColor: 'var(--border)',
+            color: 'var(--text-primary)',
+          }}
+        >
           {genSet.generated_set_text}
         </pre>
-        <div className="mt-2 flex flex-wrap gap-2">
-          <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 capitalize">
+        <div className="mt-3 flex flex-wrap gap-2">
+          <span
+            className="rounded-full border px-2.5 py-0.5 text-xs font-medium capitalize"
+            style={{ borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
+          >
             {genSet.energy_system}
           </span>
           {(genSet.technique_tags ?? []).map((tag: string) => (
-            <span key={tag} className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
+            <span
+              key={tag}
+              className="rounded-full border px-2.5 py-0.5 text-xs font-medium"
+              style={{ borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
+            >
               {tag}
             </span>
           ))}
         </div>
       </section>
 
-      <section>
-        <h2 className="text-lg font-semibold mb-3">Finished your workout?</h2>
-        <form action={markDoneAction} className="space-y-4">
+      <section
+        className="rounded-xl border p-6"
+        style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
+      >
+        <h2
+          className="text-lg font-bold mb-4 text-text-primary"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          FINISHED YOUR WORKOUT?
+        </h2>
+        <form action={markDoneAction} className="space-y-5">
           <input type="hidden" name="generated_set_id" value={genSet.id} />
 
           <div>
-            <label htmlFor="duration_min" className="block text-sm font-medium mb-1">
-              Actual duration (minutes) <span className="text-gray-400 font-normal">(optional)</span>
+            <label htmlFor="duration_min" className="block text-xs font-semibold uppercase tracking-widest text-text-secondary mb-2">
+              Actual duration (minutes) <span className="normal-case font-normal text-text-muted">(optional)</span>
             </label>
             <input
               id="duration_min"
@@ -72,40 +106,59 @@ export default async function SetPage({ params }: SetPageProps) {
               min={5}
               max={240}
               placeholder="How long did you actually swim?"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
+              style={{ borderColor: 'var(--border)', fontFamily: 'var(--font-mono)' }}
+              onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+              onBlur={e => (e.target.style.borderColor = 'var(--border)')}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">How was it?</label>
+            <p className="text-xs font-semibold uppercase tracking-widest text-text-secondary mb-3">How was it?</p>
             <div className="flex gap-3">
-              <label className="flex items-center gap-1.5 cursor-pointer">
-                <input type="radio" name="rating" value="thumbs_up" className="accent-blue-600" />
-                <span className="text-sm">👍 Good</span>
+              <label className="flex-1 cursor-pointer">
+                <input type="radio" name="rating" value="thumbs_up" className="peer sr-only" />
+                <div
+                  className="rounded-xl border py-3 text-center text-sm transition-all peer-checked:border-accent peer-checked:bg-accent/10"
+                  style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
+                >
+                  <span className="mr-1.5">👍</span>
+                  <span className="text-text-secondary">Good</span>
+                </div>
               </label>
-              <label className="flex items-center gap-1.5 cursor-pointer">
-                <input type="radio" name="rating" value="thumbs_down" className="accent-blue-600" />
-                <span className="text-sm">👎 Not great</span>
+              <label className="flex-1 cursor-pointer">
+                <input type="radio" name="rating" value="thumbs_down" className="peer sr-only" />
+                <div
+                  className="rounded-xl border py-3 text-center text-sm transition-all peer-checked:border-accent peer-checked:bg-accent/10"
+                  style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
+                >
+                  <span className="mr-1.5">👎</span>
+                  <span className="text-text-secondary">Not great</span>
+                </div>
               </label>
             </div>
           </div>
 
           <div>
-            <label htmlFor="notes" className="block text-sm font-medium mb-1">
-              Notes <span className="text-gray-400 font-normal">(optional)</span>
+            <label htmlFor="notes" className="block text-xs font-semibold uppercase tracking-widest text-text-secondary mb-2">
+              Notes <span className="normal-case font-normal text-text-muted">(optional)</span>
             </label>
             <textarea
               id="notes"
               name="notes"
               rows={2}
               placeholder="How did it go? Any feedback for next time?"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
+              style={{ borderColor: 'var(--border)' }}
+              onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
+              onBlur={e => (e.target.style.borderColor = 'var(--border)')}
             />
           </div>
 
           <button
             type="submit"
-            className="w-full rounded-md bg-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+            className="w-full rounded-full py-3.5 text-base font-semibold text-bg transition-all hover:scale-[1.02]"
+            style={{ background: 'var(--accent)', boxShadow: '0 0 24px rgba(0,229,255,0.2)' }}
           >
             Mark as Done — Earn 100 XP
           </button>
