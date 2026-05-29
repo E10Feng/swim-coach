@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { saveProfile } from './actions'
-import type { ExperienceLevel, Goal, PoolFormat } from '@/lib/types/database'
+import type { ExperienceLevel, Goal, PoolFormat, Stroke } from '@/lib/types/database'
 import { COACH_NAME, COACH_INTRO } from '@/lib/coach'
 
 type QuizStep =
@@ -22,7 +22,7 @@ const STEPS: QuizStep[] = [
 interface QuizState {
   experience_level: ExperienceLevel | ''
   goal: Goal | ''
-  strokes: string[]
+  strokes: Stroke[]
   session_duration_min: number
   days_per_week: number
   pool_format: PoolFormat | ''
@@ -120,7 +120,7 @@ export default function OnboardingPage() {
   }
 
   if (step === 'strokes') {
-    const options = [
+    const options: { label: string; value: Stroke }[] = [
       { label: 'Freestyle', value: 'freestyle' },
       { label: 'Backstroke', value: 'backstroke' },
       { label: 'Breaststroke', value: 'breaststroke' },
@@ -233,15 +233,19 @@ export default function OnboardingPage() {
     )
   }
 
-  // meet_coach
-  return (
-    <div>
-      <h1>Meet {COACH_NAME}</h1>
-      <p>{COACH_INTRO}</p>
-      {error && <p role="alert">{error}</p>}
-      <button onClick={handleFinish} disabled={loading}>
-        {loading ? 'Setting up...' : "Let's swim!"}
-      </button>
-    </div>
-  )
+  // Explicit guard: last step or any out-of-bounds index
+  if (step === 'meet_coach' || stepIndex >= STEPS.length - 1) {
+    return (
+      <div>
+        <h1>Meet {COACH_NAME}</h1>
+        <p>{COACH_INTRO}</p>
+        {error && <p role="alert">{error}</p>}
+        <button onClick={handleFinish} disabled={loading}>
+          {loading ? 'Setting up...' : "Let's swim!"}
+        </button>
+      </div>
+    )
+  }
+
+  return null
 }

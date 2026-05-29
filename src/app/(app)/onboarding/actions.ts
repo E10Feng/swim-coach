@@ -2,12 +2,12 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import type { ExperienceLevel, Goal, PoolFormat } from '@/lib/types/database'
+import type { ExperienceLevel, Goal, PoolFormat, Stroke } from '@/lib/types/database'
 
 export interface ProfileData {
   experience_level: ExperienceLevel
   goal: Goal
-  strokes: string[]
+  strokes: Stroke[]
   session_duration_min: number
   days_per_week: number
   pool_format: PoolFormat

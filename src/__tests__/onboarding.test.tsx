@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import OnboardingPage from '../app/(app)/onboarding/page'
+import { saveProfile } from '../app/(app)/onboarding/actions'
 
 jest.mock('next/navigation', () => ({
   useRouter: () => ({ push: jest.fn() }),
@@ -59,5 +60,27 @@ describe('OnboardingPage', () => {
     // should now be on meet coach
     expect(screen.getByText(/meet coach alex/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /let's swim!/i })).toBeInTheDocument()
+  })
+
+  it('displays error message when saveProfile returns an error', async () => {
+    const { saveProfile } = require('../app/(app)/onboarding/actions')
+    saveProfile.mockResolvedValueOnce({ error: 'Not authenticated' })
+
+    render(<OnboardingPage />)
+    // Walk through all steps to reach meet_coach
+    fireEvent.click(screen.getByRole('button', { name: /recreational adult/i }))
+    fireEvent.click(screen.getByRole('button', { name: /fitness & health/i }))
+    fireEvent.click(screen.getByRole('checkbox', { name: /freestyle/i }))
+    fireEvent.click(screen.getByRole('button', { name: /continue/i }))
+    fireEvent.click(screen.getByRole('button', { name: /45 min/i }))
+    fireEvent.click(screen.getByRole('button', { name: /3x \/ week/i }))
+    fireEvent.click(screen.getByRole('button', { name: /25 yards/i }))
+    fireEvent.click(screen.getByRole('button', { name: /skip/i }))
+
+    // Click Let's swim! and wait for error to appear
+    fireEvent.click(screen.getByRole('button', { name: /let's swim!/i }))
+
+    const alert = await screen.findByRole('alert')
+    expect(alert).toHaveTextContent('Not authenticated')
   })
 })
