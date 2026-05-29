@@ -22,9 +22,11 @@
   --color-surface-elevated: var(--surface-elevated);
   --color-accent:           var(--accent);
   --color-accent-hover:     var(--accent-hover);
+  --color-accent-muted:     var(--accent-muted);
   --color-text-primary:     var(--text-primary);
   --color-text-secondary:   var(--text-secondary);
   --color-text-muted:       var(--text-muted);
+  --color-border:           var(--border);
   --color-warning:          var(--warning);
   --color-success:          var(--success);
   --color-error:            var(--error);
