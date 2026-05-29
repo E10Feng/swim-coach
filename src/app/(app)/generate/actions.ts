@@ -1,5 +1,3 @@
-'use server'
-
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { generateSet } from '@/lib/ai/generate-set'
@@ -65,6 +63,7 @@ export function buildGeneratedSetRecord(input: {
 // ── Server action ─────────────────────────────────────────────────────────────
 
 export async function generateSetAction(formData: FormData) {
+  'use server'
   const supabase = await createClient()
 
   const { data: { user }, error: authError } = await supabase.auth.getUser()

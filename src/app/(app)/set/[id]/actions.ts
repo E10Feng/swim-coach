@@ -1,5 +1,3 @@
-'use server'
-
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import type { Rating } from '@/lib/types/database'
@@ -28,6 +26,7 @@ export function buildCompletedWorkoutRecord(opts: {
 }
 
 export async function markDoneAction(formData: FormData) {
+  'use server'
   const supabase = await createClient()
 
   const { data: { user }, error: authError } = await supabase.auth.getUser()
