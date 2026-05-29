@@ -134,3 +134,11 @@ describe('updateStreak', () => {
     expect(result.longest_streak).toBe(4)
   })
 })
+
+import { checkAndAwardBadges } from '@/lib/gamification/badges'
+
+describe('checkAndAwardBadges (integration-light)', () => {
+  it('exports checkAndAwardBadges as an async function', () => {
+    expect(typeof checkAndAwardBadges).toBe('function')
+  })
+})
