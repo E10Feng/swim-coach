@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import type { ExperienceLevel, Goal, PoolFormat } from '@/lib/types/database'
 
-interface ProfileData {
+export interface ProfileData {
   experience_level: ExperienceLevel
   goal: Goal
   strokes: string[]
@@ -22,6 +22,7 @@ export async function saveProfile(data: ProfileData): Promise<{ error: string } 
     return { error: 'Not authenticated' }
   }
 
+  // TODO: add Zod validation
   const { error } = await supabase
     .from('user_profiles')
     .upsert({

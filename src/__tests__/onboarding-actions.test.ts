@@ -3,13 +3,17 @@
  */
 import { saveProfile } from '../app/(app)/onboarding/actions'
 
-const mockUpsert = jest.fn().mockResolvedValue({ error: null })
+const mockUpsert = jest.fn()
 const mockGetUser = jest.fn()
+const mockFrom = jest.fn()
 
 jest.mock('@/lib/supabase/server', () => ({
   createClient: jest.fn().mockImplementation(async () => ({
     auth: { getUser: (...args: unknown[]) => mockGetUser(...args) },
-    from: () => ({ upsert: (...args: unknown[]) => mockUpsert(...args) }),
+    from: (...args: unknown[]) => {
+      mockFrom(...args)
+      return { upsert: (...a: unknown[]) => mockUpsert(...a) }
+    },
   })),
 }))
 
@@ -18,7 +22,10 @@ jest.mock('next/navigation', () => ({
 }))
 
 describe('saveProfile', () => {
-  beforeEach(() => jest.clearAllMocks())
+  beforeEach(() => {
+    jest.clearAllMocks()
+    mockUpsert.mockResolvedValue({ error: null })
+  })
 
   it('upserts profile for authenticated user', async () => {
     mockGetUser.mockResolvedValue({ data: { user: { id: 'user-123' } } })
@@ -44,6 +51,9 @@ describe('saveProfile', () => {
         physical_notes: null,
       })
     )
+    expect(mockFrom).toHaveBeenCalledWith('user_profiles')
+    const { redirect } = require('next/navigation')
+    expect(redirect).toHaveBeenCalledWith('/dashboard')
   })
 
   it('returns error when not authenticated', async () => {
