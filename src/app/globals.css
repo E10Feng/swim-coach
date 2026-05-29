@@ -14,6 +14,13 @@
   --warning:          #f59e0b;
   --success:          #22c55e;
   --error:            #f87171;
+  /* Game colors */
+  --green:            #58CC02;
+  --green-dark:       #46A302;
+  --amber:            #FFB800;
+  --amber-dark:       #CC9200;
+  --coral:            #FF6B6B;
+  --coral-dark:       #CC4444;
 }
 
 @theme inline {
@@ -23,13 +30,19 @@
   --color-accent:           var(--accent);
   --color-accent-hover:     var(--accent-hover);
   --color-accent-muted:     var(--accent-muted);
+  --color-border:           var(--border);
   --color-text-primary:     var(--text-primary);
   --color-text-secondary:   var(--text-secondary);
   --color-text-muted:       var(--text-muted);
-  --color-border:           var(--border);
   --color-warning:          var(--warning);
   --color-success:          var(--success);
   --color-error:            var(--error);
+  --color-green:            var(--green);
+  --color-green-dark:       var(--green-dark);
+  --color-amber:            var(--amber);
+  --color-amber-dark:       var(--amber-dark);
+  --color-coral:            var(--coral);
+  --color-coral-dark:       var(--coral-dark);
   --font-display: var(--font-display);
   --font-body:    var(--font-body);
   --font-mono:    var(--font-mono);
@@ -39,4 +52,31 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-body), 'DM Sans', sans-serif;
+}
+
+@layer components {
+  .btn-game {
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+    user-select: none;
+  }
+  .btn-game:active {
+    transform: translateY(5px);
+    box-shadow: none !important;
+  }
+  .btn-game-green {
+    background: var(--green);
+    box-shadow: 0 5px 0 var(--green-dark);
+    color: white;
+  }
+  .btn-game-amber {
+    background: var(--amber);
+    box-shadow: 0 5px 0 var(--amber-dark);
+    color: #060d1a;
+  }
+  .btn-game-surface {
+    background: var(--surface);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+    color: var(--text-primary);
+  }
 }
