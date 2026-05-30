@@ -74,7 +74,7 @@ export default function GenerateForm() {
                 {/* Green overlay when selected */}
                 <div
                   className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 peer-checked:opacity-100 transition-opacity"
-                  style={{ border: '2px solid var(--green)', boxShadow: '0 0 12px rgba(88,204,2,0.25)' }}
+                  style={{ border: '2px solid var(--green)', boxShadow: '0 0 12px rgba(0,191,204,0.25)' }}
                 />
               </label>
             ))}

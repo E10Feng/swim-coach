@@ -33,7 +33,7 @@ export default async function ProfilePage({
       {justUpgraded && (
         <div
           className="rounded-3xl border px-4 py-3 text-sm font-medium"
-          style={{ borderColor: 'var(--green)', color: 'var(--green)', background: 'rgba(88,204,2,0.08)' }}
+          style={{ borderColor: 'var(--green)', color: 'var(--green)', background: 'rgba(0,191,204,0.08)' }}
         >
           🎉 You&apos;re now on the Pro plan. Welcome aboard!
         </div>
@@ -94,7 +94,7 @@ export default async function ProfilePage({
               <button
                 type="submit"
                 className="w-full rounded-3xl py-3 text-sm font-semibold transition-all hover:opacity-80"
-                style={{ border: '1px solid var(--coral)', color: 'var(--coral)', background: 'rgba(255,107,107,0.06)' }}
+                style={{ border: '1px solid var(--coral)', color: 'var(--coral)', background: 'rgba(0,172,193,0.06)' }}
               >
                 Cancel subscription
               </button>

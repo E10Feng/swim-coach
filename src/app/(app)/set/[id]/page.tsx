@@ -45,16 +45,16 @@ export default async function SetPage({ params }: SetPageProps) {
           <div
             className="absolute -left-2.5 top-4 w-3 h-3 rotate-45"
             style={{
-              background: 'rgba(255,107,107,0.1)',
-              borderLeft: '1px solid rgba(255,107,107,0.25)',
-              borderBottom: '1px solid rgba(255,107,107,0.25)',
+              background: 'rgba(0,172,193,0.1)',
+              borderLeft: '1px solid rgba(0,172,193,0.25)',
+              borderBottom: '1px solid rgba(0,172,193,0.25)',
             }}
           />
           <div
             className="rounded-3xl px-4 py-3"
             style={{
-              background: 'rgba(255,107,107,0.08)',
-              border: '1px solid rgba(255,107,107,0.25)',
+              background: 'rgba(0,172,193,0.08)',
+              border: '1px solid rgba(0,172,193,0.25)',
             }}
           >
             <p className="text-xs font-bold mb-1" style={{ color: 'var(--coral)' }}>
@@ -146,7 +146,7 @@ export default async function SetPage({ params }: SetPageProps) {
                 </div>
                 <div
                   className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 peer-checked:opacity-100 transition-opacity"
-                  style={{ border: '2px solid var(--green)', boxShadow: '0 0 12px rgba(88,204,2,0.2)' }}
+                  style={{ border: '2px solid var(--green)', boxShadow: '0 0 12px rgba(0,191,204,0.2)' }}
                 />
               </label>
               <label className="flex-1 cursor-pointer relative">

@@ -89,16 +89,16 @@ export default async function DashboardPage() {
           <div
             className="absolute -left-2.5 top-4 w-3 h-3 rotate-45"
             style={{
-              background: 'rgba(255,107,107,0.1)',
-              borderLeft: '1px solid rgba(255,107,107,0.25)',
-              borderBottom: '1px solid rgba(255,107,107,0.25)',
+              background: 'rgba(0,172,193,0.1)',
+              borderLeft: '1px solid rgba(0,172,193,0.25)',
+              borderBottom: '1px solid rgba(0,172,193,0.25)',
             }}
           />
           <div
             className="rounded-3xl px-4 py-3"
             style={{
-              background: 'rgba(255,107,107,0.08)',
-              border: '1px solid rgba(255,107,107,0.25)',
+              background: 'rgba(0,172,193,0.08)',
+              border: '1px solid rgba(0,172,193,0.25)',
             }}
           >
             <p className="text-xs font-bold mb-1" style={{ color: 'var(--coral)' }}>
@@ -180,7 +180,7 @@ export default async function DashboardPage() {
             style={{
               width: `${xpProgressPercent}%`,
               background: 'var(--green)',
-              boxShadow: '0 0 10px rgba(88,204,2,0.4)',
+              boxShadow: '0 0 10px rgba(0,191,204,0.4)',
             }}
           />
         </div>
