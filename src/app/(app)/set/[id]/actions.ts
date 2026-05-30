@@ -1,32 +1,11 @@
+'use server'
+
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import type { Rating } from '@/lib/types/database'
-
-export function calculateXp(_opts: { difficulty: number }): number {
-  return 100
-}
-
-export function buildCompletedWorkoutRecord(opts: {
-  userId: string
-  generatedSetId: string
-  xpEarned: number
-  durationMin: number | null
-  rating?: Rating
-  notes?: string
-}) {
-  return {
-    user_id: opts.userId,
-    generated_set_id: opts.generatedSetId,
-    xp_earned: opts.xpEarned,
-    duration_min: opts.durationMin ?? null,
-    rating: opts.rating ?? null,
-    notes: opts.notes ?? null,
-    completed_at: new Date().toISOString(),
-  }
-}
+import { calculateXp, buildCompletedWorkoutRecord } from './helpers'
 
 export async function markDoneAction(formData: FormData) {
-  'use server'
   const supabase = await createClient()
 
   const { data: { user }, error: authError } = await supabase.auth.getUser()

@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { checkFreemiumGate, buildGeneratedSetRecord } from '@/app/(app)/generate/actions'
+import { checkFreemiumGate, buildGeneratedSetRecord } from '@/app/(app)/generate/helpers'
 
 describe('checkFreemiumGate', () => {
   const baseProgress = {

@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { buildCompletedWorkoutRecord, calculateXp } from '@/app/(app)/set/[id]/actions'
+import { buildCompletedWorkoutRecord, calculateXp } from '@/app/(app)/set/[id]/helpers'
 
 describe('calculateXp', () => {
   it('returns 100 XP for a standard completion', () => {

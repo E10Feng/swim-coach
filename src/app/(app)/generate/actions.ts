@@ -1,69 +1,12 @@
+'use server'
+
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { generateSet } from '@/lib/ai/generate-set'
-import type { SessionInput, UserProfile, UserProgress, EnergySystem, SubscriptionStatus } from '@/lib/types/database'
-
-// ── Exported helpers (unit-tested) ───────────────────────────────────────────
-
-interface FreemiumCheckInput extends UserProgress {
-  subscription_status: SubscriptionStatus
-}
-
-export interface FreemiumCheckResult {
-  allowed: boolean
-  reason?: string
-  weekReset?: boolean
-}
-
-export function checkFreemiumGate(progress: FreemiumCheckInput): FreemiumCheckResult {
-  if (progress.subscription_status === 'paid') {
-    return { allowed: true }
-  }
-
-  const weekStart = new Date(progress.week_start)
-  const msInWeek = 7 * 24 * 60 * 60 * 1000
-  const weekExpired = Date.now() - weekStart.getTime() > msInWeek
-
-  if (weekExpired) {
-    return { allowed: true, weekReset: true }
-  }
-
-  if (progress.sets_generated_this_week >= 3) {
-    return {
-      allowed: false,
-      reason: 'You have used your 3 free sets this week. Upgrade to get unlimited sets.',
-    }
-  }
-
-  return { allowed: true }
-}
-
-export function buildGeneratedSetRecord(input: {
-  userId: string
-  baseSetId: string
-  sessionInput: SessionInput | Record<string, unknown>
-  adaptedSetText: string
-  coachCommentary: string
-  energySystem: EnergySystem
-  techniqueTags: string[]
-  difficulty: number
-}) {
-  return {
-    user_id: input.userId,
-    base_set_id: input.baseSetId,
-    session_input: input.sessionInput,
-    generated_set_text: input.adaptedSetText,
-    coach_commentary: input.coachCommentary,
-    energy_system: input.energySystem,
-    technique_tags: input.techniqueTags,
-    difficulty: input.difficulty,
-  }
-}
-
-// ── Server action ─────────────────────────────────────────────────────────────
+import type { SessionInput, UserProfile, UserProgress, EnergySystem } from '@/lib/types/database'
+import { checkFreemiumGate, buildGeneratedSetRecord } from './helpers'
 
 export async function generateSetAction(formData: FormData) {
-  'use server'
   const supabase = await createClient()
 
   const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -121,7 +64,6 @@ export async function generateSetAction(formData: FormData) {
 
   const aiResult = await generateSet(profile, sessionInput, recentBaseSetIds)
 
-  // Fetch base set for metadata
   const { data: baseSet } = await supabase
     .from('sets')
     .select('difficulty, technique_tags')
