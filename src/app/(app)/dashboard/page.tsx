@@ -74,17 +74,7 @@ export default async function DashboardPage() {
   const ringDashoffset = RING_CIRCUMFERENCE * (1 - weeklyProgressPercent / 100)
 
   return (
-    <div className="min-h-screen bg-bg px-4 py-6 max-w-2xl mx-auto">
-
-      {/* Header */}
-      <header className="mb-5">
-        <p className="text-text-secondary text-sm">
-          {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
-        </p>
-        <h1 className="text-2xl font-bold text-text-primary mt-0.5">
-          Ready to swim? 🏊
-        </h1>
-      </header>
+    <div className="bg-bg px-4 pt-4 pb-2 max-w-2xl mx-auto">
 
       {/* Coach speech bubble */}
       <div className="mb-5 flex gap-3 items-start">
