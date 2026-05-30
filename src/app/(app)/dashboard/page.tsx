@@ -102,7 +102,7 @@ export default async function DashboardPage() {
             }}
           >
             <p className="text-xs font-bold mb-1" style={{ color: 'var(--coral)' }}>
-              Coach Alex
+              Splash 🦭
             </p>
             <p className="text-sm text-text-primary leading-relaxed">{coachMessage}</p>
           </div>

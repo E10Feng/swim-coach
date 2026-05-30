@@ -26,7 +26,7 @@ function NavBar() {
           className="text-xl font-bold tracking-tight text-accent"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          SWIM COACH
+          SWIMIFY
         </span>
         <nav className="flex items-center gap-4 text-sm">
           <Link href="/login" className="text-text-secondary hover:text-text-primary transition-colors">
@@ -110,7 +110,7 @@ function HowItWorks() {
     {
       number: '02',
       title: 'Get your set',
-      description: 'Coach Alex picks the right workout from our expert-curated database and adapts it to your energy level and available time.',
+      description: 'Splash picks the right workout from our expert-curated database and adapts it to your energy level and available time.',
     },
     {
       number: '03',
@@ -172,7 +172,7 @@ function ValueProps() {
     <section className="py-20">
       <div className="mx-auto max-w-5xl px-4">
         <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-text-secondary">
-          Why Swim Coach
+          Why Swimify
         </p>
         <h2
           className="mb-12 text-4xl font-bold text-text-primary"
@@ -307,9 +307,9 @@ function Footer() {
           className="font-bold text-text-secondary"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          SWIM COACH
+          SWIMIFY
         </span>
-        <span>© {new Date().getFullYear()} Swim Coach. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Swimify. All rights reserved.</span>
         <div className="flex gap-4">
           <Link href="/login" className="hover:text-text-secondary transition-colors">Sign in</Link>
           <Link href="/signup" className="hover:text-text-secondary transition-colors">Sign up</Link>

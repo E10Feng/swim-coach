@@ -119,7 +119,7 @@ export default function GenerateForm() {
             onFocus={e => (e.target.style.borderColor = 'var(--green)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border)')}
           >
-            <option value="">Let Coach Alex decide</option>
+            <option value="">Let Splash decide</option>
             <option value="aerobic">💨 Aerobic — steady base</option>
             <option value="threshold">⚡ Threshold — race pace</option>
             <option value="anaerobic">🔥 Anaerobic — high intensity</option>

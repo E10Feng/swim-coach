@@ -33,7 +33,7 @@ export default function LoginPage() {
         className="mb-8 text-2xl font-bold tracking-tight text-accent"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        SWIM COACH
+        SWIMIFY
       </a>
 
       <div

@@ -19,7 +19,7 @@ export default async function AdminLayout({
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
         <a href="/admin" className="font-semibold text-gray-900 hover:text-blue-600">
-          Swim Coach Admin
+          Swimify Admin
         </a>
         <form action={adminLogout}>
           <button

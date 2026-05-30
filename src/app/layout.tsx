@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Swim Coach — AI-powered swim training',
+  title: 'Swimify — AI-powered swim training',
   description:
     'Expert swim sets personalized to your level, goals, and schedule. Track progress, earn badges, and stay consistent with your training.',
 }

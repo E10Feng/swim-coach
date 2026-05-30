@@ -58,7 +58,7 @@ describe('OnboardingPage', () => {
     // notes — skip
     fireEvent.click(screen.getByRole('button', { name: /skip/i }))
     // should now be on meet coach
-    expect(screen.getByText(/meet coach alex/i)).toBeInTheDocument()
+    expect(screen.getByText(/meet splash the seal/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /let's swim!/i })).toBeInTheDocument()
   })
 
