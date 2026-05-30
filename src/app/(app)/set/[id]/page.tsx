@@ -105,7 +105,7 @@ export default async function SetPage({ params }: SetPageProps) {
 
       {/* Mark done form */}
       <section
-        className="rounded-2xl p-5"
+        className="rounded-2xl p-5 mb-4"
         style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
       >
         <h2
@@ -114,7 +114,7 @@ export default async function SetPage({ params }: SetPageProps) {
         >
           Finished? Log it 🎉
         </h2>
-        <form action={markDoneAction} className="space-y-4">
+        <form id="mark-done-form" action={markDoneAction} className="space-y-4">
           <input type="hidden" name="generated_set_id" value={genSet.id} />
 
           <div>
@@ -135,7 +135,6 @@ export default async function SetPage({ params }: SetPageProps) {
             />
           </div>
 
-          {/* Rating cards */}
           <div>
             <p className="text-sm font-semibold text-text-primary mb-2">How was it?</p>
             <div className="flex gap-3">
@@ -179,15 +178,19 @@ export default async function SetPage({ params }: SetPageProps) {
               onBlur={e => (e.target.style.borderColor = 'var(--border)')}
             />
           </div>
-
-          <button
-            type="submit"
-            className="btn-game btn-game-green w-full rounded-2xl py-5 text-xl font-extrabold"
-          >
-            ✓ Done — +100 XP 🎉
-          </button>
         </form>
       </section>
+
+      {/* Sticky done button — always visible above bottom nav */}
+      <div className="sticky bottom-0 pb-4 pt-2" style={{ background: 'var(--bg)' }}>
+        <button
+          type="submit"
+          form="mark-done-form"
+          className="btn-game btn-game-green w-full rounded-2xl py-5 text-xl font-extrabold"
+        >
+          ✓ Done — +100 XP 🎉
+        </button>
+      </div>
     </main>
   )
 }
