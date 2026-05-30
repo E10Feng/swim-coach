@@ -37,7 +37,7 @@ export default function LoginPage() {
       </a>
 
       <div
-        className="w-full max-w-sm rounded-2xl border p-8"
+        className="w-full max-w-sm rounded-3xl border p-8"
         style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
       >
         <h1
@@ -59,7 +59,7 @@ export default function LoginPage() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
-              className="w-full rounded-lg border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:outline-none"
+              className="w-full rounded-xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:outline-none"
               style={{ borderColor: 'var(--border)' }}
               onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
               onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -77,7 +77,7 @@ export default function LoginPage() {
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-              className="w-full rounded-lg border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:outline-none"
+              className="w-full rounded-xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:outline-none"
               style={{ borderColor: 'var(--border)' }}
               onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
               onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -85,7 +85,7 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <p role="alert" className="rounded-lg border px-3 py-2 text-sm" style={{ borderColor: 'var(--error)', color: 'var(--error)', background: 'rgba(248,113,113,0.08)' }}>
+            <p role="alert" className="rounded-xl border px-3 py-2 text-sm" style={{ borderColor: 'var(--error)', color: 'var(--error)', background: 'rgba(248,113,113,0.08)' }}>
               {error}
             </p>
           )}

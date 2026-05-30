@@ -18,7 +18,7 @@ export default function GenerateForm() {
     <>
       {errorMsg && (
         <div
-          className="mb-6 rounded-2xl border px-4 py-3 text-sm"
+          className="mb-6 rounded-3xl border px-4 py-3 text-sm"
           style={{ borderColor: 'var(--warning)', color: 'var(--warning)', background: 'rgba(245,158,11,0.08)' }}
         >
           {errorMsg}
@@ -40,7 +40,7 @@ export default function GenerateForm() {
             step={5}
             defaultValue={searchParams.get('duration_min') ?? '45'}
             required
-            className="w-full rounded-2xl border bg-surface px-4 py-3 text-lg font-bold text-text-primary focus:outline-none transition-colors"
+            className="w-full rounded-3xl border bg-surface px-4 py-3 text-lg font-bold text-text-primary focus:outline-none transition-colors"
             style={{ borderColor: 'var(--border)', fontFamily: 'var(--font-mono)' }}
             onFocus={e => (e.target.style.borderColor = 'var(--green)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -61,7 +61,7 @@ export default function GenerateForm() {
                   className="peer sr-only"
                 />
                 <div
-                  className="btn-game rounded-2xl px-2 py-4 text-center peer-checked:scale-[1.03]"
+                  className="btn-game rounded-3xl px-2 py-4 text-center peer-checked:scale-[1.03]"
                   style={{
                     background: 'var(--surface)',
                     boxShadow: '0 4px 0 rgba(0,0,0,0.35)',
@@ -73,7 +73,7 @@ export default function GenerateForm() {
                 </div>
                 {/* Green overlay when selected */}
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 peer-checked:opacity-100 transition-opacity"
+                  className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 peer-checked:opacity-100 transition-opacity"
                   style={{ border: '2px solid var(--green)', boxShadow: '0 0 12px rgba(88,204,2,0.25)' }}
                 />
               </label>
@@ -90,7 +90,7 @@ export default function GenerateForm() {
             id="focus_stroke"
             name="focus_stroke"
             defaultValue={searchParams.get('focus_stroke') ?? ''}
-            className="w-full rounded-2xl border bg-surface px-4 py-3 text-sm text-text-primary focus:outline-none transition-colors"
+            className="w-full rounded-3xl border bg-surface px-4 py-3 text-sm text-text-primary focus:outline-none transition-colors"
             style={{ borderColor: 'var(--border)' }}
             onFocus={e => (e.target.style.borderColor = 'var(--green)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -114,7 +114,7 @@ export default function GenerateForm() {
             id="energy_system"
             name="energy_system"
             defaultValue={searchParams.get('energy_system') ?? ''}
-            className="w-full rounded-2xl border bg-surface px-4 py-3 text-sm text-text-primary focus:outline-none transition-colors"
+            className="w-full rounded-3xl border bg-surface px-4 py-3 text-sm text-text-primary focus:outline-none transition-colors"
             style={{ borderColor: 'var(--border)' }}
             onFocus={e => (e.target.style.borderColor = 'var(--green)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -138,7 +138,7 @@ export default function GenerateForm() {
             type="text"
             placeholder="e.g. catch, flip turns, breathing"
             defaultValue={searchParams.get('technique_focus') ?? ''}
-            className="w-full rounded-2xl border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
+            className="w-full rounded-3xl border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
             style={{ borderColor: 'var(--border)' }}
             onFocus={e => (e.target.style.borderColor = 'var(--green)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -156,7 +156,7 @@ export default function GenerateForm() {
             rows={3}
             placeholder="e.g. my shoulder is a bit sore, want something fun"
             defaultValue={searchParams.get('free_text') ?? ''}
-            className="w-full rounded-2xl border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
+            className="w-full rounded-3xl border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
             style={{ borderColor: 'var(--border)' }}
             onFocus={e => (e.target.style.borderColor = 'var(--green)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -165,7 +165,7 @@ export default function GenerateForm() {
 
         <button
           type="submit"
-          className="btn-game btn-game-green w-full rounded-2xl py-5 text-xl font-extrabold"
+          className="btn-game btn-game-green w-full rounded-3xl py-5 text-xl font-extrabold"
         >
           Generate My Set ⚡
         </button>

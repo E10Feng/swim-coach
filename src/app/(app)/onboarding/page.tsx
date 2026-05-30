@@ -67,7 +67,7 @@ function OptionCard({ label, selected, onClick }: { label: string; selected?: bo
   return (
     <button
       onClick={onClick}
-      className="w-full rounded-xl border px-5 py-4 text-left text-base font-medium text-text-primary transition-all hover:scale-[1.01]"
+      className="w-full rounded-2xl border px-5 py-4 text-left text-base font-medium text-text-primary transition-all hover:scale-[1.01]"
       style={{
         background: selected ? 'rgba(0,229,255,0.08)' : 'var(--surface)',
         borderColor: selected ? 'var(--accent)' : 'var(--border)',
@@ -181,7 +181,7 @@ export default function OnboardingPage() {
           {options.map(o => (
             <label
               key={o.value}
-              className="flex cursor-pointer items-center gap-4 rounded-xl border px-5 py-4 transition-all hover:scale-[1.01]"
+              className="flex cursor-pointer items-center gap-4 rounded-2xl border px-5 py-4 transition-all hover:scale-[1.01]"
               style={{
                 background: state.strokes.includes(o.value) ? 'rgba(0,229,255,0.08)' : 'var(--surface)',
                 borderColor: state.strokes.includes(o.value) ? 'var(--accent)' : 'var(--border)',
@@ -286,7 +286,7 @@ export default function OnboardingPage() {
           value={state.physical_notes}
           onChange={e => setState(s => ({ ...s, physical_notes: e.target.value }))}
           rows={4}
-          className="w-full rounded-xl border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
+          className="w-full rounded-2xl border bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
           style={{ borderColor: 'var(--border)' }}
           onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
           onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -313,7 +313,7 @@ export default function OnboardingPage() {
             boxShadow: '0 0 32px rgba(0,229,255,0.2)',
           }}
         >
-          🏊
+          🦭
         </div>
         <h1
           className="text-3xl font-bold text-text-primary mb-3"
@@ -323,7 +323,7 @@ export default function OnboardingPage() {
         </h1>
         <p className="max-w-sm text-base text-text-secondary leading-relaxed mb-8">{COACH_INTRO}</p>
         {error && (
-          <p role="alert" className="mb-4 rounded-lg border px-4 py-2 text-sm" style={{ borderColor: 'var(--error)', color: 'var(--error)' }}>
+          <p role="alert" className="mb-4 rounded-xl border px-4 py-2 text-sm" style={{ borderColor: 'var(--error)', color: 'var(--error)' }}>
             {error}
           </p>
         )}

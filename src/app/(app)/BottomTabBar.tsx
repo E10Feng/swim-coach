@@ -102,6 +102,7 @@ export default function BottomTabBar() {
         borderTop: '1px solid var(--border)',
         paddingBottom: 'env(safe-area-inset-bottom)',
         height: '64px',
+        borderRadius: '24px 24px 0 0',
       }}
     >
       {TABS.map(({ href, label, Icon }) => {

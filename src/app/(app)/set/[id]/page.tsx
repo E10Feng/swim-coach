@@ -39,7 +39,7 @@ export default async function SetPage({ params }: SetPageProps) {
           className="flex-shrink-0 h-11 w-11 rounded-full flex items-center justify-center text-xl border-2"
           style={{ background: 'var(--surface)', borderColor: 'var(--coral)' }}
         >
-          🏊
+          🦭
         </div>
         <div className="relative flex-1">
           <div
@@ -51,7 +51,7 @@ export default async function SetPage({ params }: SetPageProps) {
             }}
           />
           <div
-            className="rounded-2xl px-4 py-3"
+            className="rounded-3xl px-4 py-3"
             style={{
               background: 'rgba(255,107,107,0.08)',
               border: '1px solid rgba(255,107,107,0.25)',
@@ -91,7 +91,7 @@ export default async function SetPage({ params }: SetPageProps) {
           ))}
         </div>
         <pre
-          className="whitespace-pre-wrap rounded-2xl p-5 text-sm leading-relaxed"
+          className="whitespace-pre-wrap rounded-3xl p-5 text-sm leading-relaxed"
           style={{
             fontFamily: 'var(--font-mono)',
             background: 'var(--surface)',
@@ -105,7 +105,7 @@ export default async function SetPage({ params }: SetPageProps) {
 
       {/* Mark done form */}
       <section
-        className="rounded-2xl p-5 mb-4"
+        className="rounded-3xl p-5 mb-4"
         style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
       >
         <h2
@@ -128,7 +128,7 @@ export default async function SetPage({ params }: SetPageProps) {
               min={5}
               max={240}
               placeholder="How long did you actually swim?"
-              className="w-full rounded-2xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
+              className="w-full rounded-3xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
               style={{ borderColor: 'var(--border)', fontFamily: 'var(--font-mono)' }}
               onFocus={e => (e.target.style.borderColor = 'var(--green)')}
               onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -140,23 +140,23 @@ export default async function SetPage({ params }: SetPageProps) {
             <div className="flex gap-3">
               <label className="flex-1 cursor-pointer relative">
                 <input type="radio" name="rating" value="thumbs_up" className="peer sr-only" />
-                <div className="btn-game btn-game-surface rounded-2xl py-4 text-center peer-checked:scale-[1.04]">
+                <div className="btn-game btn-game-surface rounded-3xl py-4 text-center peer-checked:scale-[1.04]">
                   <div className="text-3xl mb-1">👍</div>
                   <p className="text-xs text-text-secondary">Great!</p>
                 </div>
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 peer-checked:opacity-100 transition-opacity"
+                  className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 peer-checked:opacity-100 transition-opacity"
                   style={{ border: '2px solid var(--green)', boxShadow: '0 0 12px rgba(88,204,2,0.2)' }}
                 />
               </label>
               <label className="flex-1 cursor-pointer relative">
                 <input type="radio" name="rating" value="thumbs_down" className="peer sr-only" />
-                <div className="btn-game btn-game-surface rounded-2xl py-4 text-center peer-checked:scale-[1.04]">
+                <div className="btn-game btn-game-surface rounded-3xl py-4 text-center peer-checked:scale-[1.04]">
                   <div className="text-3xl mb-1">👎</div>
                   <p className="text-xs text-text-secondary">Meh</p>
                 </div>
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 peer-checked:opacity-100 transition-opacity"
+                  className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 peer-checked:opacity-100 transition-opacity"
                   style={{ border: '2px solid var(--coral)' }}
                 />
               </label>
@@ -172,7 +172,7 @@ export default async function SetPage({ params }: SetPageProps) {
               name="notes"
               rows={2}
               placeholder="How did it go? Any feedback for next time?"
-              className="w-full rounded-2xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
+              className="w-full rounded-3xl border bg-bg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none"
               style={{ borderColor: 'var(--border)' }}
               onFocus={e => (e.target.style.borderColor = 'var(--green)')}
               onBlur={e => (e.target.style.borderColor = 'var(--border)')}
@@ -186,7 +186,7 @@ export default async function SetPage({ params }: SetPageProps) {
         <button
           type="submit"
           form="mark-done-form"
-          className="btn-game btn-game-green w-full rounded-2xl py-5 text-xl font-extrabold"
+          className="btn-game btn-game-green w-full rounded-3xl py-5 text-xl font-extrabold"
         >
           ✓ Done — +100 XP 🎉
         </button>

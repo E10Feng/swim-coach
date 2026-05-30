@@ -64,7 +64,7 @@ export default async function HistoryPage() {
             month: 'short', day: 'numeric', year: 'numeric',
           })
           return (
-            <li key={w.id} className="rounded-xl border border-gray-100 bg-white px-5 py-4 flex flex-col gap-1">
+            <li key={w.id} className="rounded-2xl border border-gray-100 bg-white px-5 py-4 flex flex-col gap-1">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-gray-900">{dateStr}</span>
                 {w.rating && (

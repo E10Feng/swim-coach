@@ -48,13 +48,13 @@ export default async function InsightsPage() {
     <div className="max-w-2xl mx-auto px-4 py-8 space-y-8">
       <h1 className="text-2xl font-bold">Training Insights</h1>
 
-      <div className="rounded-xl bg-blue-50 border border-blue-100 px-5 py-4">
+      <div className="rounded-2xl bg-blue-50 border border-blue-100 px-5 py-4">
         <p className="text-sm text-blue-800">{note}</p>
       </div>
 
       <div className={isPaid ? '' : 'relative'}>
         {!isPaid && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-2xl bg-white/60 backdrop-blur-sm">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-3xl bg-white/60 backdrop-blur-sm">
             <p className="text-base font-semibold text-gray-900 mb-3">Unlock insights</p>
             <p className="text-sm text-gray-600 mb-4 text-center max-w-xs">
               Upgrade to see your full training balance, monthly trends, and consistency score.
@@ -102,7 +102,7 @@ export default async function InsightsPage() {
 
 function StatCard({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
   return (
-    <div className={`rounded-xl border px-4 py-3 ${highlight ? 'border-blue-200 bg-blue-50' : 'border-gray-100 bg-gray-50'}`}>
+    <div className={`rounded-2xl border px-4 py-3 ${highlight ? 'border-blue-200 bg-blue-50' : 'border-gray-100 bg-gray-50'}`}>
       <p className="text-xs text-gray-500 mb-1">{label}</p>
       <p className="text-xl font-bold text-gray-900">{value}</p>
     </div>

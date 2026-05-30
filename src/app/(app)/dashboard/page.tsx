@@ -82,7 +82,7 @@ export default async function DashboardPage() {
           className="flex-shrink-0 h-11 w-11 rounded-full flex items-center justify-center text-xl border-2"
           style={{ background: 'var(--surface)', borderColor: 'var(--coral)' }}
         >
-          🏊
+          🦭
         </div>
         <div className="relative flex-1">
           {/* Triangle pointer */}
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
             }}
           />
           <div
-            className="rounded-2xl px-4 py-3"
+            className="rounded-3xl px-4 py-3"
             style={{
               background: 'rgba(255,107,107,0.08)',
               border: '1px solid rgba(255,107,107,0.25)',
@@ -113,7 +113,7 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-2 gap-3 mb-5">
         {/* Streak */}
         <div
-          className="btn-game btn-game-surface rounded-2xl p-4 text-center"
+          className="btn-game btn-game-surface rounded-3xl p-4 text-center"
           style={{ boxShadow: '0 5px 0 var(--amber-dark)' }}
         >
           <div className="text-3xl mb-1">🔥</div>
@@ -133,7 +133,7 @@ export default async function DashboardPage() {
 
         {/* Weekly goal ring */}
         <div
-          className="btn-game btn-game-surface rounded-2xl p-4 text-center"
+          className="btn-game btn-game-surface rounded-3xl p-4 text-center"
           style={{ boxShadow: `0 5px 0 ${weeklyGoalMet ? 'var(--green-dark)' : 'var(--amber-dark)'}` }}
         >
           <svg width="88" height="88" viewBox="0 0 96 96" className="mx-auto" aria-label="Weekly goal">
@@ -156,7 +156,7 @@ export default async function DashboardPage() {
 
       {/* XP card */}
       <div
-        className="btn-game btn-game-surface rounded-2xl p-4 mb-5"
+        className="btn-game btn-game-surface rounded-3xl p-4 mb-5"
         style={{ boxShadow: '0 5px 0 var(--green-dark)' }}
       >
         <div className="flex items-center justify-between mb-3">
@@ -198,7 +198,7 @@ export default async function DashboardPage() {
       {/* Primary CTA */}
       <Link
         href="/generate"
-        className="btn-game btn-game-green block w-full text-center rounded-2xl py-5 mb-5 text-xl font-extrabold"
+        className="btn-game btn-game-green block w-full text-center rounded-3xl py-5 mb-5 text-xl font-extrabold"
       >
         Get Today&apos;s Set ⚡
       </Link>
@@ -219,7 +219,7 @@ export default async function DashboardPage() {
               return (
                 <div
                   key={workout.id}
-                  className="rounded-xl px-4 py-3 flex items-center justify-between"
+                  className="rounded-2xl px-4 py-3 flex items-center justify-between"
                   style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
                 >
                   <div className="flex items-center gap-3">

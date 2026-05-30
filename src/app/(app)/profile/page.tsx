@@ -32,7 +32,7 @@ export default async function ProfilePage({
 
       {justUpgraded && (
         <div
-          className="rounded-2xl border px-4 py-3 text-sm font-medium"
+          className="rounded-3xl border px-4 py-3 text-sm font-medium"
           style={{ borderColor: 'var(--green)', color: 'var(--green)', background: 'rgba(88,204,2,0.08)' }}
         >
           🎉 You&apos;re now on the Pro plan. Welcome aboard!
@@ -41,7 +41,7 @@ export default async function ProfilePage({
 
       {/* Email */}
       <div
-        className="rounded-2xl p-4"
+        className="rounded-3xl p-4"
         style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-text-secondary mb-1">Email</p>
@@ -50,7 +50,7 @@ export default async function ProfilePage({
 
       {/* Subscription */}
       <div
-        className="rounded-2xl p-5 space-y-4"
+        className="rounded-3xl p-5 space-y-4"
         style={{
           background: 'var(--surface)',
           border: `2px solid ${isPaid ? 'var(--amber)' : 'var(--border)'}`,
@@ -77,7 +77,7 @@ export default async function ProfilePage({
             <form action="/api/stripe/checkout" method="POST">
               <button
                 type="submit"
-                className="btn-game btn-game-amber w-full rounded-2xl py-3.5 text-base font-bold"
+                className="btn-game btn-game-amber w-full rounded-3xl py-3.5 text-base font-bold"
               >
                 ⭐ Upgrade to Pro — $12/mo
               </button>
@@ -93,7 +93,7 @@ export default async function ProfilePage({
             <form action={async () => { 'use server'; await cancelSubscription() }}>
               <button
                 type="submit"
-                className="w-full rounded-2xl py-3 text-sm font-semibold transition-all hover:opacity-80"
+                className="w-full rounded-3xl py-3 text-sm font-semibold transition-all hover:opacity-80"
                 style={{ border: '1px solid var(--coral)', color: 'var(--coral)', background: 'rgba(255,107,107,0.06)' }}
               >
                 Cancel subscription

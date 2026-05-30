@@ -4,23 +4,23 @@
   --bg:               #060d1a;
   --surface:          #0d1e33;
   --surface-elevated: #132840;
-  --accent:           #00e5ff;
-  --accent-hover:     #33eaff;
-  --accent-muted:     rgba(0, 229, 255, 0.12);
+  --accent:           #00BFCC;
+  --accent-hover:     #00D4E0;
+  --accent-muted:     rgba(0, 191, 204, 0.12);
   --text-primary:     #f0f6ff;
   --text-secondary:   #6b8aad;
   --text-muted:       #3a5572;
-  --border:           rgba(0, 229, 255, 0.12);
+  --border:           rgba(0, 191, 204, 0.12);
   --warning:          #f59e0b;
   --success:          #22c55e;
   --error:            #f87171;
-  /* Game colors */
-  --green:            #58CC02;
-  --green-dark:       #46A302;
-  --amber:            #FFB800;
-  --amber-dark:       #CC9200;
-  --coral:            #FF6B6B;
-  --coral-dark:       #CC4444;
+  /* Game colors — all teal now */
+  --green:            #00BFCC;
+  --green-dark:       #0099A8;
+  --amber:            #00D4E0;
+  --amber-dark:       #00B0BA;
+  --coral:            #00ACC1;
+  --coral-dark:       #0097A7;
 }
 
 @theme inline {
@@ -72,7 +72,7 @@ body {
   .btn-game-amber {
     background: var(--amber);
     box-shadow: 0 5px 0 var(--amber-dark);
-    color: #060d1a;
+    color: white;
   }
   .btn-game-surface {
     background: var(--surface);
